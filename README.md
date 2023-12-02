@@ -1,7 +1,4 @@
-# With-defer @deprecated
-
-@deprecated with runWithDefer are already existed - [with-defer - npm]( https://www.npmjs.com/package/with-defer )
-
+# with-defer-es
 
 Great thanks to  [James M. Lay](https://stackoverflow.com/a/59634819)
 
@@ -11,7 +8,13 @@ by James M. Lay
 https://stackoverflow.com/a/59634819
 
 Usage:
-```
+
+```typescript
+import withDefer from 'with-defer-es'
+
+// or if you are still using commonjs
+// const withDefer = await import( 'with-defer-es').then(e=>e.default)
+
 withDefer(async (defer) => {
     const s = await openStream();
     defer(() => closeStream(s));
@@ -74,3 +77,17 @@ release resource A
 });
 
 ```
+
+## Dev
+
+```bash
+pnpm install
+pnpm test
+pnpm build
+```
+
+
+## Reference
+
+- [Javascript release resources automatically (like RAII) - Stack Overflow]( https://stackoverflow.com/questions/11693963/javascript-release-resources-automatically-like-raii )
+- [with-defer - npm]( https://www.npmjs.com/package/with-defer )

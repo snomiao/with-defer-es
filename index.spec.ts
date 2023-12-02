@@ -1,7 +1,6 @@
 import withDefer from ".";
 import {vi, it, expect } from "vitest";
 
-
 it("calls releases in correctly order", async () => {
   const stdout = [] as string[];
   const stderr = [] as string[];

@@ -1,36 +1,40 @@
-// - [Javascript release resources automatically (like RAII) - Stack Overflow]( https://stackoverflow.com/questions/11693963/javascript-release-resources-automatically-like-raii )
 type Awaitable<T> = PromiseLike<T> | T;
 type Action = () => Awaitable<void>;
-type Defer = (action: Action) => Awaitable<void>;
+type Defer = (clean: Action) => Awaitable<void>;
 
 export default async function withDefer(fn: (defer: Defer) => Awaitable<void>) {
-  const stack = [] as Action[];
-  const defer: Defer = (action) => {
-    stack.push(action);
-  };
+  const stack: Action[] = [];
   const errors: unknown[] = [];
+  const defer: Defer = (clean) => {
+    stack.unshift(clean);
+  };
 
   try {
     return await fn(defer);
   } catch (e) {
     errors.push(e);
   } finally {
-    while (stack.length) {
+    for await (const clean of stack) {
       try {
-        const action = stack.pop()!;
-        await action();
+        await clean();
       } catch (e) {
         errors.push(e);
       }
     }
-    // for (const e of errors.slice(1)) {
-    // await error("error in deferred action: " + e);
-    // }
-    if (errors.length) {
-      const WithDeferError = Object.assign(new Error("WithDefer Errors"), {
-        errors,
-      });
-      throw WithDeferError;
-    }
+    if (errors.length)
+      throw new DeferAggregateError(
+        "One or more exceptions caught while executing or deferred clean-up functions",
+        errors
+      );
+  }
+}
+
+export class DeferAggregateError extends Error {
+  public readonly errors: unknown[];
+  public readonly name = "DeferAggregateError";
+
+  constructor(readonly message: string = "", errors: unknown[]) {
+    super(message);
+    this.errors = [...errors];
   }
 }

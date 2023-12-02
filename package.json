@@ -1,19 +1,24 @@
 {
-  "name": "with-defer",
-  "version": "1.0.0",
-  "description": "",
+  "name": "with-defer-es",
+  "version": "1.0.1",
+  "description": "Run a function with an injected go-like defer helper with ESModule supported",
   "main": "index.js",
-  "module": "index.mjs",
-  "files": [],
+  "module": "index.js",
+  "types": "index.d.ts",
+  "type": "module",
+  "files": [
+    "index.js",
+    "index.cjs",
+    "index.d.ts"
+  ],
   "scripts": {
     "test": "vitest",
-    "build": "tsc --declaration && esbuild index.ts --outfile=index.mjs"
+    "build": "tsc -d index.ts"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["defer", "golang", "release", "resource", "esm"],
+  "author": "snomiao",
   "license": "MIT",
   "devDependencies": {
-    "esbuild": "^0.19.8",
     "typescript": "^5.3.2",
     "vitest": "^0.34.6"
   }
