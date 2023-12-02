@@ -1,9 +1,9 @@
 import { DeferAggregateError } from "./DeferAggregateError";
-
 type Awaitable<T> = PromiseLike<T> | T;
 type Action = () => Awaitable<void>;
 type Defer = (clean: Action) => Awaitable<void>;
 
+export { DeferAggregateError };
 export default async function withDefer(fn: (defer: Defer) => Awaitable<void>) {
   const stack: Action[] = [];
   const errors: unknown[] = [];
@@ -30,5 +30,4 @@ export default async function withDefer(fn: (defer: Defer) => Awaitable<void>) {
       );
   }
 }
-
 

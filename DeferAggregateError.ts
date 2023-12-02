@@ -1,4 +1,3 @@
-
 export class DeferAggregateError extends Error {
   public readonly errors: unknown[];
   public readonly name = "DeferAggregateError";
