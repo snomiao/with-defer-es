@@ -1,3 +1,5 @@
+import { DeferAggregateError } from "./DeferAggregateError";
+
 type Awaitable<T> = PromiseLike<T> | T;
 type Action = () => Awaitable<void>;
 type Defer = (clean: Action) => Awaitable<void>;
@@ -29,12 +31,4 @@ export default async function withDefer(fn: (defer: Defer) => Awaitable<void>) {
   }
 }
 
-export class DeferAggregateError extends Error {
-  public readonly errors: unknown[];
-  public readonly name = "DeferAggregateError";
 
-  constructor(readonly message: string = "", errors: unknown[]) {
-    super(message);
-    this.errors = [...errors];
-  }
-}
