@@ -1,4 +1,4 @@
-# With-defer
+# With-defer @deprecated
 
 @deprecated with runWithDefer are already existed - [with-defer - npm]( https://www.npmjs.com/package/with-defer )
 
