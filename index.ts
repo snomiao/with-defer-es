@@ -4,7 +4,10 @@ type Action = () => Awaitable<void>;
 type Defer = (clean: Action) => Awaitable<void>;
 
 export { DeferAggregateError };
-export default async function withDefer(fn: (defer: Defer) => Awaitable<void>) {
+/**
+ * @throws DeferAggregateError if ran into error
+ */
+export default async function withDefer(fn: (defer: Defer) => Awaitable<void>){
   const stack: Action[] = [];
   const errors: unknown[] = [];
   const defer: Defer = (clean) => {

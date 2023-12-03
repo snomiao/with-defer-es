@@ -1,5 +1,5 @@
+import { expect, it } from "vitest";
 import withDefer from "./index";
-import { vi, it, expect } from "vitest";
 
 it("calls releases in correctly order", async () => {
   const stdout = [] as string[];
