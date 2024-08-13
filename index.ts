@@ -7,7 +7,9 @@ export { DeferAggregateError };
 /**
  * @throws DeferAggregateError if ran into error
  */
-export default async function withDefer(fn: (defer: Defer) => Awaitable<void>){
+export default async function withDefer<T>(
+  fn: (defer: Defer) => Awaitable<T>
+): Promise<T> {
   const stack: Action[] = [];
   const errors: unknown[] = [];
   const defer: Defer = (clean) => {
@@ -26,11 +28,13 @@ export default async function withDefer(fn: (defer: Defer) => Awaitable<void>){
         errors.push(e);
       }
     }
+    // if (errors.length === 1) {
+    //   throw errors[0];
+    // }
     if (errors.length)
       throw new DeferAggregateError(
-        "One or more exceptions caught while executing or deferred clean-up functions",
+        "Two or more exceptions caught while executing or deferred clean-up functions",
         errors
       );
   }
 }
-
