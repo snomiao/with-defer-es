@@ -1,6 +1,6 @@
 {
   "name": "with-defer-es",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Run a function with an injected go-like defer helper with ESModule supported",
   "keywords": [
     "defer",
