@@ -41,3 +41,11 @@ release resource A
 `.trim()
   );
 });
+
+it("Returns value", async () => {
+  const x = await withDefer((defer) => {
+    return true;
+  });
+
+  expect(x).equal(true);
+});
