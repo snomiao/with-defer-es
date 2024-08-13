@@ -32,7 +32,7 @@ it("calls releases in correctly order", async () => {
     console.error(error);
   });
 
-  expect(stdout.join("\n")).equal(
+  expect(stdout.join("\n")).toEqual(
     `
 create resource A
 create resource B
@@ -47,5 +47,5 @@ it("Returns value", async () => {
     return true;
   });
 
-  expect(x).equal(true);
+  expect(x).toEqual(true);
 });
