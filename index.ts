@@ -4,6 +4,7 @@ type Action = () => Awaitable<void>;
 type Defer = (clean: Action) => Awaitable<void>;
 
 export { DeferAggregateError };
+
 /**
  * @throws DeferAggregateError if ran into error
  */
@@ -29,13 +30,10 @@ export default async function withDefer<T>(
         errors.push(e);
       }
     }
-    // if (errors.length === 1) {
-    //   throw errors[0];
-    // }
     if (errors.length)
       throw new DeferAggregateError(
         "Two or more exceptions caught while executing or deferred clean-up functions",
-        { cause: { errors } }
+        errors
       );
   }
 }
