@@ -20,6 +20,7 @@ export default async function withDefer<T>(
     return await fn(defer);
   } catch (e) {
     errors.push(e);
+    return new Promise<never>(() => {}); // make ts happy
   } finally {
     for await (const clean of stack) {
       try {
@@ -34,7 +35,7 @@ export default async function withDefer<T>(
     if (errors.length)
       throw new DeferAggregateError(
         "Two or more exceptions caught while executing or deferred clean-up functions",
-        errors
+        { cause: { errors } }
       );
   }
 }
