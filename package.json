@@ -1,6 +1,6 @@
 {
   "name": "with-defer-es",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Run a function with an injected go-like defer helper with ESModule supported",
   "keywords": [
     "defer",
@@ -34,7 +34,7 @@
     "build": "tsc && esbuild --bundle index.ts --outdir=dist --sourcemap --format=esm",
     "prerelease": "bun run build && bun run test",
     "release": "bunx standard-version && git push --follow-tags && npm publish",
-    "test": "vitest"
+    "test": "bun test"
   },
   "dependencies": {
     "acorn": "^8.12.1",
