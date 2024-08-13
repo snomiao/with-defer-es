@@ -2,20 +2,6 @@
   "name": "with-defer-es",
   "version": "1.0.2",
   "description": "Run a function with an injected go-like defer helper with ESModule supported",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "type": "module",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/snomiao/with-defer-es.git"
-  },
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "test": "vitest",
-    "build": "tsc && esbuild --bundle index.ts --outdir=dist --sourcemap --format=esm"
-  },
   "keywords": [
     "defer",
     "golang",
@@ -23,15 +9,106 @@
     "resource",
     "esm"
   ],
-  "author": "snomiao",
-  "license": "MIT",
-  "devDependencies": {
-    "esbuild": "^0.19.8",
-    "typescript": "^5.3.2",
-    "vitest": "^0.34.6"
-  },
+  "homepage": "https://github.com/snomiao/with-defer-es#readme",
   "bugs": {
     "url": "https://github.com/snomiao/with-defer-es/issues"
   },
-  "homepage": "https://github.com/snomiao/with-defer-es#readme"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snomiao/with-defer-es.git"
+  },
+  "license": "MIT",
+  "author": "snomiao",
+  "type": "module",
+  "exports": {
+    "import": "./dist/index.js",
+    "types": "./index.ts"
+  },
+  "main": "dist/index.js",
+  "module": "index.ts",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc && esbuild --bundle index.ts --outdir=dist --sourcemap --format=esm",
+    "prerelease": "bun run build && bun run test",
+    "release": "bunx standard-version && git push --follow-tags && npm publish",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "acorn": "^8.12.1",
+    "acorn-walk": "^8.3.3",
+    "ansi-styles": "^5.2.0",
+    "assertion-error": "^1.1.0",
+    "braces": "^3.0.3",
+    "bun-types": "^1.1.17",
+    "cac": "^6.7.14",
+    "chai": "^4.5.0",
+    "chalk": "^4.1.2",
+    "check-error": "^1.0.3",
+    "ci-info": "^3.9.0",
+    "color-convert": "^2.0.1",
+    "color-name": "^1.1.4",
+    "confbox": "^0.1.7",
+    "debug": "^4.3.6",
+    "deep-eql": "^4.1.4",
+    "diff-sequences": "^29.6.3",
+    "escape-string-regexp": "^2.0.0",
+    "expect": "^29.7.0",
+    "fill-range": "^7.1.1",
+    "get-func-name": "^2.0.2",
+    "graceful-fs": "^4.2.11",
+    "has-flag": "^4.0.0",
+    "is-number": "^7.0.0",
+    "jest-diff": "^29.7.0",
+    "jest-get-type": "^29.6.3",
+    "jest-matcher-utils": "^29.7.0",
+    "jest-message-util": "^29.7.0",
+    "jest-util": "^29.7.0",
+    "js-tokens": "^4.0.0",
+    "local-pkg": "^0.4.3",
+    "loupe": "^2.3.7",
+    "magic-string": "^0.30.11",
+    "micromatch": "^4.0.7",
+    "mlly": "^1.7.1",
+    "ms": "^2.1.2",
+    "nanoid": "^3.3.7",
+    "p-limit": "^4.0.0",
+    "pathe": "^1.1.2",
+    "pathval": "^1.1.1",
+    "picocolors": "^1.0.1",
+    "picomatch": "^2.3.1",
+    "pkg-types": "^1.1.3",
+    "postcss": "^8.4.41",
+    "pretty-format": "^29.7.0",
+    "react-is": "^18.3.1",
+    "rollup": "^4.20.0",
+    "siginfo": "^2.0.0",
+    "slash": "^3.0.0",
+    "source-map-js": "^1.2.0",
+    "stack-utils": "^2.0.6",
+    "stackback": "^0.0.2",
+    "std-env": "^3.7.0",
+    "strip-literal": "^1.3.0",
+    "supports-color": "^7.2.0",
+    "tinybench": "^2.9.0",
+    "tinypool": "^0.7.0",
+    "tinyspy": "^2.2.1",
+    "to-regex-range": "^5.0.1",
+    "type-detect": "^4.1.0",
+    "ufo": "^1.5.4",
+    "undici-types": "^6.13.0",
+    "vite": "^5.4.0",
+    "vite-node": "^0.34.6",
+    "why-is-node-running": "^2.3.0",
+    "yocto-queue": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.1.6",
+    "@types/jest": "^29.5.12",
+    "esbuild": "^0.19.8",
+    "typescript": "^5.5.4",
+    "vitest": "^0.34.6"
+  }
 }
