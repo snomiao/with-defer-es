@@ -31,7 +31,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc && esbuild --bundle index.ts --outdir=dist --sourcemap --format=esm",
+    "build": "tsrs && esbuild --bundle index.ts --outdir=dist --sourcemap --format=esm",
     "prerelease": "bun run build && bun run test",
     "release": "bunx standard-version && git push --follow-tags && npm publish",
     "test": "bun test"
@@ -40,6 +40,6 @@
     "@types/bun": "^1.1.6",
     "esbuild": "^0.25.0",
     "semantic-release": "^25.0.3",
-    "typescript": "^5.5.4"
+    "tsrs": "0.25.0-ts7.1.0-beta"
   }
 }
